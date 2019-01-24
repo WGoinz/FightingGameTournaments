@@ -18,7 +18,6 @@ db.on('open', () => {
 app.use(express.static(`${__dirname}/client/build`))
 
 
-app.use(logger('dev'))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
