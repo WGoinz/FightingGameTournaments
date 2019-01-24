@@ -1,4 +1,6 @@
 const Tournament = require('../models/Tournament')
+const request = require('request');
+
 
 
 const tournamentController = {
@@ -9,6 +11,21 @@ const tournamentController = {
         } catch (err) {
             console.log(err)
         }
+    },
+    getTournament: (req, res) => {
+        // let getTournament = new smashgg.Tournament("gbwk46");
+        // res.json(getTournament)
+        request.get("https://api.smash.gg/tournament/gbwk48", (error, response, body) => {
+            if (error) {
+                return console.dir(error);
+            }
+            else {
+                console.log(JSON.parse(body))
+                const passed = JSON.parse(body)
+                const tournament = passed.entities.tournament
+                res.send(tournament)
+            }
+        })
     }
 }
 
