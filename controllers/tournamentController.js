@@ -12,6 +12,17 @@ const tournamentController = {
             console.log(err)
         }
     },
+    create: async (req, res) => {
+        try {
+            console.log(req.body)
+            const newTournament = req.body
+            const savedTournament = await Tournament.create(newTournament)
+            res.json(savedTournament)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
+    },
     getTournament: (req, res) => {
         // let getTournament = new smashgg.Tournament("gbwk46");
         // res.json(getTournament)

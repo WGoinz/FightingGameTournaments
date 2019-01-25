@@ -27,9 +27,9 @@ app.get('/', (req, res) => {
 
 app.use('/api', router)
 
-app.get('/*', (req, res) => {
-    res.sendFile(`${__dirname}/client/build/index.html`)
-  })
+// app.get('/*', (req, res) => {
+//     res.sendFile(`${__dirname}/client/build/index.html`)
+// })
 
 
 const PORT = process.env.PORT || 3001

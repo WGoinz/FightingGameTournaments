@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const request = require('request');
 
 
 
@@ -9,7 +8,9 @@ const tournamentController = require('../controllers/tournamentController')
 
 
 router.get('/tournaments', tournamentController.index)
-router.get('/tournaments/specific', tournamentController.getTournament)
+router.post('/tournaments', tournamentController.create)
+router.get('/tournaments/:tournamentId', tournamentController.getTournament)
+
 
 
 
