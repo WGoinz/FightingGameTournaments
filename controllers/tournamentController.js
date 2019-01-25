@@ -23,6 +23,12 @@ const tournamentController = {
             res.status(500).json(err)
         }
     },
+    show: (req, res) => {
+        const tournamentId = req.params.tournamentId
+        Tournament.findById(tournamentId).then((tournament) => {
+            res.send(tournament)
+        })
+    },
     getTournament: (req, res) => {
         // let getTournament = new smashgg.Tournament("gbwk46");
         // res.json(getTournament)
@@ -37,6 +43,17 @@ const tournamentController = {
                 res.send(tournament)
             }
         })
+    },
+    update: async (req, res) => {
+        try {
+            const tournamentId = req.params.tournamentId
+            const updatedTournament = req.body
+            const savedTournament = await Tournament.findByIdAndUpdate(tournamentId, updatedTournament)
+            res.json(savedTournament)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
     }
 }
 
