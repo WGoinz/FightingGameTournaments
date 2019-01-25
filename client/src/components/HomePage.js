@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Banner from './components/Banner';
-import Tournaments from './components/Tournaments';
+import Banner from './Banner';
+import Tournaments from './Tournaments';
 
 class HomePage extends Component {
     render() {
