@@ -33,7 +33,7 @@ class NewTournamentURL extends Component {
         }
         const newUrl = newTournament.url
         // console.log(newUrl)
-        axios.get(`/api/tournaments/getNew/new`, newTournament)
+        axios.post(`/api/newtournament`, newTournament)
             .then((res) => {
                 console.log(res.data)
                 this.setState({

@@ -11,7 +11,7 @@ const championController = require('../controllers/championController')
 router.get('/tournaments', tournamentController.index)
 router.post('/tournaments', tournamentController.create)
 router.get('/tournaments/:tournamentId', tournamentController.show)
-router.get('/tournaments/getNew/:tournamentId', tournamentController.getTournament)
+router.post('/newtournament', tournamentController.getTournament)
 router.put('/tournaments/:tournamentId', tournamentController.update)
 router.delete('/tournaments/:tournamentId', tournamentController.delete)
 

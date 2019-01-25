@@ -32,7 +32,9 @@ const tournamentController = {
     getTournament: (req, res) => {
         // let getTournament = new smashgg.Tournament("gbwk46");
         // res.json(getTournament)
-        request.get("https://api.smash.gg/tournament/gbwk47", (error, response, body) => {
+        const newUrl = req.body.url
+        console.log(req.body.url)
+        request.get(`${newUrl}`, (error, response, body) => {
             if (error) {
                 return console.dir(error);
             }
