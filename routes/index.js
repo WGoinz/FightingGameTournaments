@@ -16,6 +16,10 @@ router.put('/tournaments/:tournamentId', tournamentController.update)
 router.delete('/tournaments/:tournamentId', tournamentController.delete)
 
 router.get('/tournaments/:tournamentId/champions', championController.index)
+router.get('/tournaments/:tournamentId/champions/:championId', championController.show)
+router.delete('/tournaments/:tournamentId/champions/:championId', championController.delete)
+
+
 
 
 
