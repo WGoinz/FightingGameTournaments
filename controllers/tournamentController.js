@@ -54,7 +54,21 @@ const tournamentController = {
             console.log(err)
             res.status(500).json(err)
         }
+    },
+    delete: async (req, res) => {
+        try {
+            const tournamentId = req.params.tournamentId
+            await Tournament.findByIdAndRemove(tournamentId)
+            res.json({
+                "msg": "Successfully Deleted",
+                "redirect": "/tournaments"
+            })
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
     }
 }
+
 
 module.exports = tournamentController
