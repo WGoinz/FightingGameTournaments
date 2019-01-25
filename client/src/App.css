@@ -30,3 +30,13 @@
     transform: rotate(360deg);
   }
 }
+
+html {
+  /* background-color: #5EC9DB; */
+  background-color: white;
+}
+
+body{
+  width: 80vw;
+  margin: 0 auto;
+}
