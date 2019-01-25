@@ -63,7 +63,7 @@ const tournamentController = {
             await Tournament.findByIdAndRemove(tournamentId)
             res.json({
                 "msg": "Successfully Deleted",
-                "redirect": "/tournaments"
+                "redirect": "/"
             })
         } catch (err) {
             console.log(err)

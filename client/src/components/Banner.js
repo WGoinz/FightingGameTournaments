@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from "styled-components"
-import NewTournamentURL from './NewTournamentURL';
+
 const Main = styled.div`
 background-color:#5EC9DB ;
 font-family: 'Sanchez', serif;
@@ -19,7 +19,6 @@ class Banner extends Component {
                         <h1 className="display-4">Fighting Game Tournaments</h1>
                     </div>
                 </Main>
-                <NewTournamentURL />
             </div>
         );
     }

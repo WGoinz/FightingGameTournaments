@@ -6,6 +6,7 @@ import axios from "axios"
 const Button = styled.button`
 background-color:#5EC9DB ;
 border-color: #5EC9DB;
+margin-bottom: 30px;
 `
 
 class NewTournamentURL extends Component {
@@ -17,6 +18,15 @@ class NewTournamentURL extends Component {
             location: "",
             champions: []
         }
+    }
+
+    createTournament = () => {
+        let newTournament = { ...this.state.tournament }
+        // console.log(newTournament)
+        axios.post(`/api/tournaments`, newTournament).then((res) => {
+            // console.log(res.data)
+            this.props.getTournaments()
+        })
     }
     handleChange = (event) => {
         let newTournament = { ...this.state.tournament }
@@ -36,16 +46,19 @@ class NewTournamentURL extends Component {
         axios.post(`/api/newtournament`, newTournament)
             .then((res) => {
                 console.log(res.data)
+                let date = Date()
+                let dateString = date.toString()
                 this.setState({
                     tournament: {
                         name: res.data.name,
                         url: newUrl,
                         location: res.data.venueAddress,
-                        date: "",
+                        date: dateString,
                         champions: []
                     }
                 })
-                console.log(this.state.tournament)
+                // console.log(this.state.tournament)
+                this.createTournament()
             })
     }
     render() {
