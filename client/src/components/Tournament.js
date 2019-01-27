@@ -4,6 +4,10 @@ import axios from "axios"
 
 
 class Tournament extends Component {
+    state = {
+        tournament: {},
+        champions: []
+    }
     deleteTournament = () => {
         axios.delete(`/api/tournaments/${this.props.match.params.tournamentId}`)
             .then((res) => {
@@ -11,12 +15,29 @@ class Tournament extends Component {
                 window.location = res.data.redirect
             })
     }
+    getSingleTournament = () => {
+        axios.get(`/api/tournaments/${this.props.match.params.tournamentId}`).then((res) => {
+            // console.log(res.data)
+            this.setState({ tournament: res.data })
+            console.log(this.state.tournament)
+        })
+    }
+    getChampions = () => {
+        axios.get(`/api/tournaments/${this.props.match.params.tournamentId}/champions`).then((res) => {
+            // console.log(res.data)
+            this.setState({ champions: res.data })
+            console.log(this.state.champions)
+        })
+    }
+    componentDidMount = async () => {
+        await this.getSingleTournament()
+        this.getChampions()
+    }
     render() {
         return (
             <div>
                 <Banner />
-                <h1>Tournament View</h1>
-                <h2>{this.props.match.params.tournamentId}</h2>
+                <h1>{this.state.tournament.name}</h1>
                 <button onClick={this.deleteTournament}>Delete Tournament</button>
             </div>
         );
