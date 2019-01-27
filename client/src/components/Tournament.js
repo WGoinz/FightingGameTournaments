@@ -6,8 +6,19 @@ import Champions from './Champions';
 
 class Tournament extends Component {
     state = {
-        tournament: {},
-        champions: []
+        tournament: {
+            champions: [],
+            phases: []
+        },
+
+    }
+    createChampions = () => {
+        let newChampions = this.state.tournament.phases
+        console.log(newChampions)
+        // axios.post(`/api/tournaments`, newChampions).then((res) => {
+        //     // console.log(res.data)
+        //     this.getChampions()
+        // })
     }
     deleteTournament = () => {
         axios.delete(`/api/tournaments/${this.props.match.params.tournamentId}`)
@@ -21,13 +32,18 @@ class Tournament extends Component {
             // console.log(res.data)
             this.setState({ tournament: res.data })
             console.log(this.state.tournament)
+            this.createChampions()
         })
     }
     getChampions = () => {
         axios.get(`/api/tournaments/${this.props.match.params.tournamentId}/champions`).then((res) => {
             // console.log(res.data)
-            this.setState({ champions: res.data })
-            console.log(this.state.champions)
+            this.setState({
+                tournament: {
+                    champions: res.data
+                }
+            })
+            console.log(this.state.tournament.champions)
         })
     }
     componentDidMount = async () => {
@@ -41,7 +57,7 @@ class Tournament extends Component {
                 <h1>{this.state.tournament.name}</h1>
                 <button onClick={this.deleteTournament}>Delete Tournament</button>
                 <div>
-                    <Champions champions={this.state.champions} />
+                    <Champions tournamentId={this.props.match.params.tournamentId} champions={this.state.tournament.champions} />
                 </div>
             </div>
         );

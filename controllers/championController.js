@@ -21,6 +21,27 @@ const championController = {
             console.log(err)
         }
     },
+    create: async (req, res) => {
+        const tournamentId = req.params.tournamentId
+        Tournament.findById(tournamentId).then((tournament) => {
+            Champion.create(req.body).then(champion => {
+                tournament.champions.push(champion)
+                tournament.save()
+                res.json(tournament)
+            })
+        })
+        // try {
+        //     const tournamentId = req.params.tournamentId
+        //     const tournament = Tournament.findById(tournament)
+        //     const newChampion = req.body
+        //     const savedChampion = await Champion.create(newChampion)
+        //     tournament.champions.push(savedChampion)
+        //     res.json(savedChampion)
+        // } catch (err) {
+        //     console.log(err)
+        //     res.status(500).json(err)
+        // }
+    },
     delete: async (req, res) => {
         try {
             const tournamentId = req.params.tournamentId

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from "styled-components"
+import { Link } from "react-router-dom"
+
 
 const Main = styled.div`
 background-color:#5EC9DB ;
@@ -18,6 +20,7 @@ class Champions extends Component {
                     <h2>{champion.gamertag}</h2>
                     <p>{champion.gamePlayed}</p>
                     <p>{champion.record}</p>
+                    <Link to={`/tournaments/${this.props.tournamentId}/champions/${champion._id}`}><h1>View</h1></Link>
                 </Main>
             )
         })
