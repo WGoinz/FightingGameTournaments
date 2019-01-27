@@ -12,13 +12,30 @@ class Tournament extends Component {
         },
 
     }
-    createChampions = () => {
+    getEvents = () => {
         let newChampions = this.state.tournament.phases
-        console.log(newChampions)
-        // axios.post(`/api/tournaments`, newChampions).then((res) => {
-        //     // console.log(res.data)
-        //     this.getChampions()
-        // })
+        let champions = []
+        let newArray = newChampions.map(champion => {
+            const eventId = {
+                event: champion.eventId
+            }
+            return (
+                axios.post(`/api/tournament/${this.props.match.params.tournamentId}`, eventId)
+                    .then((res) => {
+                        // console.log(res.data.entities.event.name)
+                        let eventName = res.data.entities.event.name
+                        champions.push(eventName)
+                        // console.log(champions)
+                        this.setState({
+                            tournament: {
+                                champions: champions,
+                                phases: ""
+                            }
+                        })
+                        console.log(this.state.tournament.champions)
+                    })
+            )
+        })
     }
     deleteTournament = () => {
         axios.delete(`/api/tournaments/${this.props.match.params.tournamentId}`)
@@ -32,7 +49,7 @@ class Tournament extends Component {
             // console.log(res.data)
             this.setState({ tournament: res.data })
             console.log(this.state.tournament)
-            this.createChampions()
+            this.getEvents()
         })
     }
     getChampions = () => {
@@ -57,9 +74,9 @@ class Tournament extends Component {
                 <h1>{this.state.tournament.name}</h1>
                 <button onClick={this.deleteTournament}>Delete Tournament</button>
                 <div>
-                    <Champions tournamentId={this.props.match.params.tournamentId} champions={this.state.tournament.champions} />
+                    <Champions phases={this.state.tournament.phases} tournamentId={this.props.match.params.tournamentId} champions={this.state.tournament.champions} />
                 </div>
-            </div>
+            </div >
         );
     }
 }

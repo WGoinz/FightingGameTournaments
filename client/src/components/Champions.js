@@ -17,9 +17,10 @@ class Champions extends Component {
         let championsArray = this.props.champions.map((champion, i) => {
             return (
                 <Main key={i}>
-                    <h2>{champion.gamertag}</h2>
+                    {/* <h2>{champion.gamertag}</h2>
                     <p>{champion.gamePlayed}</p>
-                    <p>{champion.record}</p>
+                    <p>{champion.record}</p> */}
+                    <h2>{champion}</h2>
                     <Link to={`/tournaments/${this.props.tournamentId}/champions/${champion._id}`}><h1>View</h1></Link>
                 </Main>
             )
