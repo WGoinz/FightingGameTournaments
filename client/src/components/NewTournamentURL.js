@@ -66,8 +66,8 @@ class NewTournamentURL extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <label>Enter Tournament URL:</label>
-                        <input type="text" className="form-control" name="url" placeholder="URL from Smash.gg. Example: https://api.smash.gg/tournament/pulsar-premier-league" onChange={this.handleChange} />
+                        <label>Enter Tournament Slug:</label>
+                        <input type="text" className="form-control" name="url" placeholder="URL from Smash.gg: gbwk43" onChange={this.handleChange} />
                     </div>
                     <Button type="submit" className="btn btn-primary">Submit</Button>
                 </form>

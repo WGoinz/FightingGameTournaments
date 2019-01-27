@@ -34,7 +34,7 @@ const tournamentController = {
         // res.json(getTournament)
         const newUrl = req.body.url
         console.log(req.body.url)
-        request.get(`${newUrl}`, (error, response, body) => {
+        request.get(`https://api.smash.gg/tournament/${newUrl}`, (error, response, body) => {
             if (error) {
                 return console.dir(error);
             }
