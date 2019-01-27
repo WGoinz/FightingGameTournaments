@@ -36,7 +36,9 @@ html {
   background-color: white;
 }
 
-body{
+body {
   width: 70vw;
   margin: 0 auto;
+  font-family: 'Sanchez', serif;
+
 }

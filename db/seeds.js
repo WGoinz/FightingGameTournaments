@@ -28,6 +28,7 @@ const weeklyDojo = new Tournament({
     url: "https://smash.gg/gbwk48",
     date: "1-14-19",
     location: "The Wasteland Gaming",
+    phases: [1, 2, 3],
     champions: [Neon, Soriku]
 })
 const gwinnettBrawl = new Tournament({
@@ -35,6 +36,7 @@ const gwinnettBrawl = new Tournament({
     url: "https://smash.gg/gb63",
     date: "1-12-19",
     location: "The Wasteland Gaming",
+    phases: [4, 5, 6],
     champions: [Kb, Dapvip]
 })
 
