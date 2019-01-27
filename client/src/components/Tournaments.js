@@ -15,6 +15,7 @@ background-color:#5EC9DB ;
 display: inline-block;
 margin-bottom: 15px;
 padding: 5px;
+text-transform: uppercase;
 `
 
 class Tournaments extends Component {
