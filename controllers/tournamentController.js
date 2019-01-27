@@ -34,7 +34,7 @@ const tournamentController = {
         // res.json(getTournament)
         const newUrl = req.body.url
         console.log(req.body.url)
-        request.get(`https://api.smash.gg/tournament/${newUrl}`, (error, response, body) => {
+        request.get(`https://api.smash.gg/tournament/${newUrl}?expand=event&expand=phase`, (error, response, body) => {
             if (error) {
                 return console.dir(error);
             }
@@ -42,7 +42,7 @@ const tournamentController = {
                 // console.log(JSON.parse(body))
                 const passed = JSON.parse(body)
                 const tournament = passed.entities.tournament
-                res.send(tournament)
+                res.send(passed)
             }
         })
     },

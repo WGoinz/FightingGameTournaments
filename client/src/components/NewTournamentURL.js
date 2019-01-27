@@ -50,9 +50,9 @@ class NewTournamentURL extends Component {
                 let dateString = date.toString()
                 this.setState({
                     tournament: {
-                        name: res.data.name,
+                        name: res.data.entities.tournament.name,
                         url: newUrl,
-                        location: res.data.venueAddress,
+                        location: res.data.entities.tournament.venueAddress,
                         date: dateString,
                         champions: []
                     }
