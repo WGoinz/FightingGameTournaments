@@ -8,14 +8,17 @@ class Tournament extends Component {
     state = {
         tournament: {
             champions: [],
-            phases: []
+            phases: [],
+            name: "",
+            date: "",
+            location: ""
         },
 
     }
     getEvents = () => {
-        let newChampions = this.state.tournament.phases
+        let newChampions = this.state.tournament
         let champions = []
-        let newArray = newChampions.map(champion => {
+        let newArray = newChampions.phases.map(champion => {
             const eventId = {
                 event: champion.eventId
             }
@@ -29,13 +32,17 @@ class Tournament extends Component {
                         this.setState({
                             tournament: {
                                 champions: champions,
-                                phases: ""
+                                phases: newChampions.phases,
+                                name: newChampions.name,
+                                date: newChampions.date,
+                                location: newChampions.location,
                             }
                         })
-                        console.log(this.state.tournament.champions)
+                        console.log(this.state.tournament)
                     })
             )
         })
+        console.log(this.state.tournament)
     }
     deleteTournament = () => {
         axios.delete(`/api/tournaments/${this.props.match.params.tournamentId}`)
@@ -71,7 +78,10 @@ class Tournament extends Component {
         return (
             <div>
                 <Banner />
-                <h1>{this.state.tournament.name}</h1>
+                <div>
+                    <h3>{this.state.tournament.name}</h3>
+                    <h3>{this.state.tournament.location}</h3>
+                </div>
                 <button onClick={this.deleteTournament}>Delete Tournament</button>
                 <div>
                     <Champions phases={this.state.tournament.phases} tournamentId={this.props.match.params.tournamentId} champions={this.state.tournament.champions} />

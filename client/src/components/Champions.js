@@ -7,30 +7,35 @@ const Main = styled.div`
 background-color:#5EC9DB ;
 font-family: 'Sanchez', serif;
 color:#323234 ;
-div{
-    display: flex;
-}
+display: flex;
+`
+const Column = styled.div`
+background-color:#5EC9DB ;
+font-family: 'Sanchez', serif;
+color:#323234 ;
+display: flex;
+flex-direction: column;
 `
 
 class Champions extends Component {
     render() {
         let championsArray = this.props.champions.map((champion, i) => {
             return (
-                <Main key={i}>
+                <Column key={i}>
                     {/* <h2>{champion.gamertag}</h2>
                     <p>{champion.gamePlayed}</p>
                     <p>{champion.record}</p> */}
-                    <h2>{champion}</h2>
-                    <Link to={`/tournaments/${this.props.tournamentId}/champions/${champion._id}`}><h1>View</h1></Link>
-                </Main>
+                    <h3>{champion}</h3>
+                    <Link to={`/tournaments/${this.props.tournamentId}/champions/${champion._id}`}><h3>View</h3></Link>
+                </Column>
             )
         })
         return (
             <div>
                 <h1>Champions</h1>
-                <div>
+                <Main>
                     {championsArray}
-                </div>
+                </Main>
             </div>
         );
     }

@@ -36,7 +36,7 @@ class Tournaments extends Component {
         const tournaments = this.state.tournaments.map((tournament, i) => {
             return (
                 <Div key={i}>
-                    <Link to={`/tournaments/${tournament._id}`}><h1>{tournament.name}</h1></Link>
+                    <Link to={`/tournaments/${tournament._id}`}><h3>{tournament.name}</h3></Link>
                 </Div>
             )
         })
