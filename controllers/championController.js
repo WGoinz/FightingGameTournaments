@@ -21,7 +21,7 @@ const championController = {
             console.log(err)
         }
     },
-    create: async (req, res) => {
+    create: (req, res) => {
         const tournamentId = req.params.tournamentId
         Tournament.findById(tournamentId).then((tournament) => {
             Champion.create(req.body).then(champion => {

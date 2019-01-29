@@ -26,15 +26,15 @@ class App extends Component {
     const HomePageComponent = () => {
       return (<HomePage getTournaments={this.getTournaments} tournaments={this.state.tournaments} />)
     }
+
+
     return (
       <Router>
         <div>
           <Switch>
             <Route exact path="/" render={HomePageComponent} />
-            {/* <Route exact path="/tournaments/" component={Tournaments} /> */}
             <Route exact path="/tournaments/:tournamentId" component={Tournament} />
             <Route exact path='/tournaments/:tournamentId/champions/:championId' component={Champion} />
-
           </Switch>
         </div>
       </Router>
