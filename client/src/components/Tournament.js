@@ -62,14 +62,18 @@ class Tournament extends Component {
     }
     createChampions = () => {
         let events = this.state.tournament.events
-        events.forEach((event) => {
-            let eventObject = {
-                gamePlayed: event.name
+        let groups = this.state.tournament.groups
+        for (let i = 0; i < events.length || i < groups.length; i++) {
+            let champion = {
+                gamePlayed: events[i].name,
+                gamertag: groups[i].id
             }
-            axios.post(`/api/tournaments/${this.props.match.params.tournamentId}/champions`, eventObject).then((res) => {
-                // console.log(res.data)
+            axios.post(`/api/tournaments/${this.props.match.params.tournamentId}/champions`, champion).then((res) => {
+                console.log(res.data)
             })
-        })
+            // console.log(events[i].name + '----' + groups[i].id)
+            console.log(champion)
+        }
     }
     render() {
 
