@@ -42,6 +42,23 @@ const championController = {
         //     res.status(500).json(err)
         // }
     },
+    getPhaseGroup: (req, res) => {
+        // let getTournament = new smashgg.Tournament("gbwk46");
+        // res.json(getTournament)
+        const phaseGroupId = parseInt(req.body.gamertag)
+        console.log(req.body.gamertag)
+        request.get(`https://api.smash.gg/phase_group/${phaseGroupId}?expand[]=sets&expand[]=seeds`, (error, response, body) => {
+            if (error) {
+                return console.dir(error);
+            }
+            else {
+                // console.log(JSON.parse(body))
+                const passed = JSON.parse(body)
+                const tournament = passed.entities.tournament
+                res.send(passed)
+            }
+        })
+    },
     delete: async (req, res) => {
         try {
             const tournamentId = req.params.tournamentId

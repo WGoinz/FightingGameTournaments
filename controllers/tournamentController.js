@@ -46,20 +46,6 @@ const tournamentController = {
             }
         })
     },
-    getEvents: (req, res) => {
-        const newEvent = req.body.event
-        console.log(req.body.event)
-        request.get(`https://api.smash.gg/event/${newEvent}`, (error, response, body) => {
-            if (error) {
-                return console.dir(error);
-            }
-            else {
-                // console.log(JSON.parse(body))
-                const passed = JSON.parse(body)
-                res.send(passed)
-            }
-        })
-    },
     update: async (req, res) => {
         try {
             const tournamentId = req.params.tournamentId
