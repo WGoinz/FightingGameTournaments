@@ -16,12 +16,14 @@ const Main = styled.div`
 font-family: 'Sanchez', serif;
 color:#323234 ;
 display: flex;
+justify-content: space-between;
 margin-top: 10px;
 h3 {
     border-top: 25px solid #323234;
     font-size: 25px;
-    margin-right: 10px;
+    margin: 5px;
     background-color:#5EC9DB ;
+    padding:5px;
 
 }
 `

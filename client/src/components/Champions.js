@@ -52,7 +52,7 @@ class Champions extends Component {
         return (
             <div>
                 <Main>
-                    <h1>Champions</h1>
+                    <h1>Events</h1>
                     {championsArray}
                 </Main>
             </div>
