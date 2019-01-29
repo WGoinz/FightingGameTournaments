@@ -7,7 +7,7 @@ class HomePage extends Component {
         return (
             <div>
                 <Banner />
-                <Tournaments />
+                <Tournaments getTournaments={this.props.getTournaments} tournaments={this.props.tournaments}/>
             </div>
         );
     }

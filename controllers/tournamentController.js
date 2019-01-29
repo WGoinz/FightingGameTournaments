@@ -34,7 +34,7 @@ const tournamentController = {
         // res.json(getTournament)
         const newUrl = req.body.url
         console.log(req.body.url)
-        request.get(`https://api.smash.gg/tournament/${newUrl}?expand=event&expand=phase`, (error, response, body) => {
+        request.get(`https://api.smash.gg/tournament/${newUrl}?expand[]=phase&expand[]=event&expand[]=groups`, (error, response, body) => {
             if (error) {
                 return console.dir(error);
             }
@@ -47,8 +47,6 @@ const tournamentController = {
         })
     },
     getEvents: (req, res) => {
-        // let getTournament = new smashgg.Tournament("gbwk46");
-        // res.json(getTournament)
         const newEvent = req.body.event
         console.log(req.body.event)
         request.get(`https://api.smash.gg/event/${newEvent}`, (error, response, body) => {

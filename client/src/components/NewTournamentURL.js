@@ -17,7 +17,9 @@ class NewTournamentURL extends Component {
             date: "",
             location: "",
             champions: [],
-            phases: []
+            phases: [],
+            groups: [],
+            events: []
         }
     }
 
@@ -56,7 +58,9 @@ class NewTournamentURL extends Component {
                         location: res.data.entities.tournament.venueAddress,
                         date: dateString,
                         champions: [],
-                        phases: res.data.entities.phase
+                        phases: res.data.entities.phase,
+                        groups: res.data.entities.groups,
+                        events: res.data.entities.event
                     }
                 })
                 // console.log(this.state.tournament)

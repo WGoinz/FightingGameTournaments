@@ -12,7 +12,7 @@ router.get('/tournaments', tournamentController.index)
 router.post('/tournaments', tournamentController.create)
 router.get('/tournaments/:tournamentId', tournamentController.show)
 router.post('/newtournament', tournamentController.getTournament)
-router.post('/tournament/:tournamentId', tournamentController.getEvents)
+router.post('/tournaments/:tournamentId', tournamentController.getEvents)
 router.put('/tournaments/:tournamentId', tournamentController.update)
 router.delete('/tournaments/:tournamentId', tournamentController.delete)
 

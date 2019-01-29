@@ -19,21 +19,11 @@ text-transform: uppercase;
 `
 
 class Tournaments extends Component {
-    state = {
-        tournaments: []
-    }
     componentDidMount() {
-        this.getTournaments()
-    }
-    getTournaments = () => {
-        axios.get("/api/tournaments").then((res) => {
-            // console.log(res.data)
-            this.setState({ tournaments: res.data })
-            console.log(this.state.tournaments)
-        })
+        this.props.getTournaments()
     }
     render() {
-        const tournaments = this.state.tournaments.map((tournament, i) => {
+        const tournaments = this.props.tournaments.map((tournament, i) => {
             return (
                 <Div key={i}>
                     <Link to={`/tournaments/${tournament._id}`}><h3>{tournament.name}</h3></Link>
@@ -42,7 +32,7 @@ class Tournaments extends Component {
         })
         return (
             <Div>
-                <NewTournamentURL getTournaments={this.getTournaments} />
+                <NewTournamentURL getTournaments={this.props.getTournaments} />
                 <Banner>Tournaments</Banner>
                 <div>
                     {tournaments}

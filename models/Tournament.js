@@ -7,6 +7,8 @@ const Tournament = new Schema({
     date: String,
     location: String,
     phases: [],
+    groups: [],
+    events: [],
     champions: [
         {
             type: Schema.Types.ObjectId,

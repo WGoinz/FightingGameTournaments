@@ -44,8 +44,8 @@ const gwinnettBrawl = new Tournament({
 
 Tournament.remove({})
     .then(() => Champion.remove({}))
-    .then(() => Champion.insertMany([Neon, Soriku, Kb, Dapvip]))
-    .then(() => weeklyDojo.save())
-    .then(() => gwinnettBrawl.save())
-    .then(() => console.log('Successful Save'))
+    // .then(() => Champion.insertMany([Neon, Soriku, Kb, Dapvip]))
+    // .then(() => weeklyDojo.save())
+    // .then(() => gwinnettBrawl.save())
+    .then(() => console.log('Successful Seeds Ran'))
     .then(() => mongoose.connection.close())

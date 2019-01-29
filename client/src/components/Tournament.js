@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Banner from './Banner';
 import axios from "axios"
-import Champions from './Champions';
+
 
 
 class Tournament extends Component {
@@ -11,38 +11,31 @@ class Tournament extends Component {
             phases: [],
             name: "",
             date: "",
-            location: ""
+            location: "",
+            url: ""
         },
 
     }
-    getEvents = () => {
-        let newChampions = this.state.tournament
-        let champions = []
-        let newArray = newChampions.phases.map(champion => {
+    getEventNames = () => {
+        let newTournament = this.state.tournament
+        let championsArray = []
+        newTournament.events.map(champion => {
             const eventId = {
-                event: champion.eventId
+                event: champion.id
             }
             return (
-                axios.post(`/api/tournament/${this.props.match.params.tournamentId}`, eventId)
+                axios.post(`/api/tournaments/${this.props.match.params.tournamentId}`, eventId)
                     .then((res) => {
                         // console.log(res.data.entities.event.name)
                         let eventName = res.data.entities.event.name
-                        champions.push(eventName)
+                        newTournament.champions.push(eventName)
                         // console.log(champions)
-                        this.setState({
-                            tournament: {
-                                champions: champions,
-                                phases: newChampions.phases,
-                                name: newChampions.name,
-                                date: newChampions.date,
-                                location: newChampions.location,
-                            }
-                        })
-                        console.log(this.state.tournament)
                     })
             )
         })
+        this.setState({ tournament: newTournament })
         console.log(this.state.tournament)
+        // this.createChampions()
     }
     deleteTournament = () => {
         axios.delete(`/api/tournaments/${this.props.match.params.tournamentId}`)
@@ -53,26 +46,17 @@ class Tournament extends Component {
     }
     getSingleTournament = () => {
         axios.get(`/api/tournaments/${this.props.match.params.tournamentId}`).then((res) => {
-            // console.log(res.data)
+            console.log(res.data)
             this.setState({ tournament: res.data })
-            console.log(this.state.tournament)
-            this.getEvents()
-        })
-    }
-    getChampions = () => {
-        axios.get(`/api/tournaments/${this.props.match.params.tournamentId}/champions`).then((res) => {
-            // console.log(res.data)
-            this.setState({
-                tournament: {
-                    champions: res.data
-                }
-            })
-            console.log(this.state.tournament.champions)
+            this.getEventNames()
         })
     }
     componentDidMount = async () => {
-        await this.getSingleTournament()
-        this.getChampions()
+        this.getSingleTournament()
+    }
+    createChampions = () => {
+        let newChampions = this.state.tournament
+        console.log(newChampions.champions)
     }
     render() {
         return (
@@ -83,9 +67,6 @@ class Tournament extends Component {
                     <h3>{this.state.tournament.location}</h3>
                 </div>
                 <button onClick={this.deleteTournament}>Delete Tournament</button>
-                <div>
-                    <Champions phases={this.state.tournament.phases} tournamentId={this.props.match.params.tournamentId} champions={this.state.tournament.champions} />
-                </div>
             </div >
         );
     }
