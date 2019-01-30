@@ -40,32 +40,37 @@ class NewTournamentURL extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         let currentTournament = this.state.tournament
-        // console.log(currentTournament)
-        const newTournament = {
-            url: currentTournament.url
+        if (currentTournament.url === "") {
+            alert("Please enter a valid URL")
         }
-        const newUrl = newTournament.url
-        // console.log(newUrl)
-        axios.post(`/api/newtournament`, newTournament)
-            .then((res) => {
-                console.log(res.data)
-                let date = Date()
-                let dateString = date.toString()
-                this.setState({
-                    tournament: {
-                        name: res.data.entities.tournament.name,
-                        url: newUrl,
-                        location: res.data.entities.tournament.venueAddress,
-                        date: dateString,
-                        champions: [],
-                        phases: res.data.entities.phase,
-                        groups: res.data.entities.groups,
-                        events: res.data.entities.event
-                    }
+        // console.log(currentTournament)
+        else {
+            const newTournament = {
+                url: currentTournament.url
+            }
+            const newUrl = newTournament.url
+            // console.log(newUrl)
+            axios.post(`/api/newtournament`, newTournament)
+                .then((res) => {
+                    console.log(res.data)
+                    let date = Date()
+                    let dateString = date.toString()
+                    this.setState({
+                        tournament: {
+                            name: res.data.entities.tournament.name,
+                            url: newUrl,
+                            location: res.data.entities.tournament.venueAddress,
+                            date: dateString,
+                            champions: [],
+                            phases: res.data.entities.phase,
+                            groups: res.data.entities.groups,
+                            events: res.data.entities.event
+                        }
+                    })
+                    // console.log(this.state.tournament)
+                    this.createTournament()
                 })
-                // console.log(this.state.tournament)
-                this.createTournament()
-            })
+        }
     }
     render() {
         return (

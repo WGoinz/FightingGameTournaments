@@ -4,14 +4,6 @@ import axios from "axios"
 import styled from "styled-components"
 import Champions from './Champions';
 
-
-const Column = styled.div`
-background-color:#5EC9DB ;
-font-family: 'Sanchez', serif;
-color:#323234 ;
-display: flex;
-flex-direction: column;
-`
 const Main = styled.div`
 font-family: 'Sanchez', serif;
 color:#323234 ;
@@ -53,7 +45,7 @@ class Tournament extends Component {
     }
     getSingleTournament = () => {
         axios.get(`/api/tournaments/${this.props.match.params.tournamentId}`).then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({ tournament: res.data })
         })
     }

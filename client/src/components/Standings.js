@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from "styled-components"
-import { Link } from "react-router-dom"
 import axios from "axios"
 import Banner from './Banner';
 
@@ -18,13 +17,9 @@ h1 {
     font-size: 50px;
 }
 `
-const Column = styled.div`
-background-color:#5EC9DB ;
-font-family: 'Sanchez', serif;
-color:#323234 ;
-display: flex;
-flex-direction: column;
-border-bottom: 2px solid #323234;
+const Table = styled.table`
+    border-color:#323234;
+
 `
 
 class Standings extends Component {
@@ -44,12 +39,12 @@ class Standings extends Component {
     }
     render() {
         let newRecord = this.state.record
-        let sortRecord= []
+        let sortRecord = []
         for (var placing in newRecord) {
             sortRecord.push([placing, newRecord[placing]]);
         }
-        
-        sortRecord.sort(function(a, b) {
+
+        sortRecord.sort(function (a, b) {
             return a[1].placement - b[1].placement;
         });
         console.log(sortRecord)
@@ -58,10 +53,10 @@ class Standings extends Component {
             let entrant = parseInt(record[1].entrantId)
             console.log(entrant)
             return (
-                <Column key={i}>
-                    <h2>{record[1].mutations.entrants[entrant].name}</h2>
-                    <h3>Placing: {record[1].placement}</h3>
-                </Column>
+                <tr key={i}>
+                    <td>{record[1].placement}:</td>
+                    <th scope="row">{record[1].mutations.entrants[entrant].name}</th>
+                </tr>
             )
         })
         let standings = record
@@ -72,7 +67,18 @@ class Standings extends Component {
                     <Banner />
                     <Main>
                         <h1>Standings</h1>
-                        {standings}
+                        <Table className="table table-hover table-light">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Placing</th>
+                                    <th scope="col">Gamertag</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {standings}
+                            </tbody>
+                        </Table>
+
                     </Main>
                 </div>
             </div >

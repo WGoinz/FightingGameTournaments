@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Banner from './Banner';
 import axios from "axios"
-import Standings from './Standings';
 
 class Champion extends Component {
     state = {
