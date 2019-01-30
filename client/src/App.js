@@ -6,6 +6,7 @@ import './App.css';
 import Tournament from './components/Tournament';
 import HomePage from './components/HomePage';
 import Champion from './components/Champion';
+import Standings from './components/Standings';
 
 
 
@@ -35,6 +36,7 @@ class App extends Component {
             <Route exact path="/" render={HomePageComponent} />
             <Route exact path="/tournaments/:tournamentId" component={Tournament} />
             <Route exact path='/tournaments/:tournamentId/champions/:championId' component={Champion} />
+            <Route exact path='/tournaments/:tournamentId/champions/:championId/standings' component={Standings} />
           </Switch>
         </div>
       </Router>

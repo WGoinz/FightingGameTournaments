@@ -50,7 +50,7 @@ const tournamentController = {
         try {
             const tournamentId = req.params.tournamentId
             const updatedTournament = req.body
-            const savedTournament = await Tournament.findByIdAndUpdate(tournamentId, updatedTournament)
+            const savedTournament = await Tournament.findByIdAndUpdate(tournamentId, updatedTournament, { new: true })
             res.json(savedTournament)
         } catch (err) {
             console.log(err)

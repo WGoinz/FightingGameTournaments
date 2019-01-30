@@ -19,7 +19,13 @@ router.get('/tournaments/:tournamentId/champions', championController.index)
 router.post('/tournaments/:tournamentId/champions', championController.create)
 router.get('/tournaments/:tournamentId/champions/:championId', championController.show)
 router.post('/tournaments/:tournamentId/champions/:championId', championController.getPhaseGroup)
+router.put('/tournaments/:tournamentId/champions/:championId', championController.update)
 router.delete('/tournaments/:tournamentId/champions/:championId', championController.delete)
+
+router.get('/tournaments/:tournamentId/champions/:championId/standings', championController.standings)
+
+
+
 
 
 

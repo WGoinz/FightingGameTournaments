@@ -69,11 +69,13 @@ class Tournament extends Component {
                 gamertag: groups[i].id
             }
             axios.post(`/api/tournaments/${this.props.match.params.tournamentId}/champions`, champion).then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
             })
             // console.log(events[i].name + '----' + groups[i].id)
             console.log(champion)
+
         }
+        window.location = `/tournaments/${this.props.match.params.tournamentId}`
     }
     render() {
 

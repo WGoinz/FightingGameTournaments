@@ -40,7 +40,9 @@ class Champions extends Component {
     componentDidMount = () => {
         this.getChampions()
     }
-
+    componentWillReceiveProps (){
+        console.log("props received")
+    }
     render() {
         let championsArray = this.state.champions.map((champion, i) => {
             return (

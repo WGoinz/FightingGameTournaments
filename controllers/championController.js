@@ -54,10 +54,21 @@ const championController = {
             else {
                 // console.log(JSON.parse(body))
                 const passed = JSON.parse(body)
-                const tournament = passed.entities.tournament
                 res.send(passed)
             }
         })
+    },
+    update: async (req, res) => {
+        try {
+            const tournamentId = req.params.tournamentId
+            const champion = req.params.championId
+            const updatedChampion = req.body
+            const savedChampion = await Champion.findByIdAndUpdate(champion, updatedChampion, { new: true })
+            res.json(savedChampion)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
     },
     delete: async (req, res) => {
         try {
@@ -66,11 +77,21 @@ const championController = {
             await Champion.findByIdAndRemove(championId)
             res.json({
                 "msg": "Successfully Deleted",
-                "redirect": `/tournaments/${tournamentId}/champions`
+                "redirect": `/tournaments/${tournamentId}`
             })
         } catch (err) {
             console.log(err)
             res.status(500).json(err)
+        }
+    },
+    standings: async (req, res) => {
+        const tournamentId = req.params.tournamentId
+        const championId = req.params.championId
+        try {
+            const champion = await Champion.findById(championId)
+            res.json(champion)
+        } catch (err) {
+            console.log(err)
         }
     }
 }
