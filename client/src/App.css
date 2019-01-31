@@ -40,5 +40,10 @@ body {
   width: 70vw;
   margin: 0 auto;
   font-family: 'Sanchez', serif;
+}
 
+@media only screen and (max-width: 600px) {
+  body {
+    width: 100vw;
+  }
 }

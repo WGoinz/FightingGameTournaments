@@ -11,6 +11,10 @@ div{
   display: flex;
 justify-content: center;
 }
+@media only screen and (max-width: 600px) {
+  h1{
+font-size: 45px;  }
+}
 `
 class Banner extends Component {
     render() {

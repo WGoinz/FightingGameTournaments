@@ -17,6 +17,10 @@ h2 {
     padding:5px;
 
 }
+@media only screen and (max-width: 600px) {
+  h2{
+font-size: 30px;  }
+}
 `
 class Champion extends Component {
     state = {
