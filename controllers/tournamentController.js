@@ -60,7 +60,7 @@ const tournamentController = {
     delete: async (req, res) => {
         try {
             const tournamentId = req.params.tournamentId
-            await Tournament.findByIdAndRemove(tournamentId)
+            await Tournament.findByIdAndRemove(tournamentId).populate('champions')
             res.json({
                 "msg": "Successfully Deleted",
                 "redirect": "/"

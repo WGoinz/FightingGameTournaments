@@ -67,7 +67,7 @@ class Tournament extends Component {
             console.log(champion)
 
         }
-        this.getEventNames()
+        this.getSingleTournament()
         window.location = `/tournaments/${this.props.match.params.tournamentId}`
     }
     render() {

@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
 import Banner from './Banner';
 import axios from "axios"
-import Standings from './Standings';
+import styled from "styled-components"
 
+const Main = styled.div`
+font-family: 'Sanchez', serif;
+color:#323234 ;
+display: flex;
+justify-content: center;
+margin-top: 10px;
+h2 {
+    border-top: 25px solid #323234;
+    font-size: 40px;
+    margin: 5px;
+    background-color:#5EC9DB ;
+    padding:5px;
+
+}
+`
 class Champion extends Component {
     state = {
         champion: {},
@@ -46,11 +61,14 @@ class Champion extends Component {
         return (
             <div>
                 <Banner />
-                <h1>Champion</h1>
-                <h3>Game Played: {this.state.champion.gamePlayed}</h3>
-                <h3>Gamertag: {this.state.champion.gamertag}</h3>
-                <button onClick={this.showStandings}>Show Standings</button>
-                <button onClick={this.deleteChampion}>Delete Champion</button>
+                <Main>
+                    <h2>Game Played: {this.state.champion.gamePlayed}</h2>
+                    <h2>Tournament ID: {this.state.champion.gamertag}</h2>
+                </Main>
+                <Main>
+                    <button onClick={this.showStandings}>Show Standings</button>
+                    <button onClick={this.deleteChampion}>Delete Champion</button>
+                </Main>
             </div>
         );
     }
