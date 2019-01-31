@@ -32,14 +32,14 @@ class Tournament extends Component {
             newTournament.championsArray.push(event)
         })
         this.setState({ championsArray: newTournament.championsArray })
-        console.log(newTournament)
-        console.log(this.state)
+        // console.log(newTournament)
+        // console.log(this.state)
     }
 
     deleteTournament = () => {
         axios.delete(`/api/tournaments/${this.props.match.params.tournamentId}`)
             .then((res) => {
-                console.log(res)
+                // console.log(res)
                 window.location = res.data.redirect
             })
     }
@@ -64,11 +64,11 @@ class Tournament extends Component {
                 // console.log(res.data)
             })
             // console.log(events[i].name + '----' + groups[i].id)
-            console.log(champion)
+            // console.log(champion)
 
         }
         this.getSingleTournament()
-        window.location = `/tournaments/${this.props.match.params.tournamentId}`
+        // window.location = `/tournaments/${this.props.match.params.tournamentId}`
     }
     render() {
 

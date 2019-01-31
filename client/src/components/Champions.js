@@ -34,7 +34,7 @@ class Champions extends Component {
         axios.get(`/api/tournaments/${this.props.params}/champions`).then((res) => {
             // console.log(res.data)
             this.setState({ champions: res.data })
-            console.log(this.state.champions)
+            // console.log(this.state.champions)
         })
     }
     componentDidMount = () => {

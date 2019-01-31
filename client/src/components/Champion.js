@@ -30,24 +30,24 @@ class Champion extends Component {
     }
     getChampion = () => {
         axios.get(`/api/tournaments/${this.props.match.params.tournamentId}/champions/${this.props.match.params.championId}`).then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({ champion: res.data })
             this.getStandings()
         })
     }
     getStandings = () => {
         let champion = { gamertag: this.state.champion.gamertag }
-        console.log(champion)
+        // console.log(champion)
         axios.post(`/api/tournaments/${this.props.match.params.tournamentId}/champions/${this.props.match.params.championId}`, champion).then((res) => {
             this.setState({ standings: res.data.entities.seeds })
-            console.log(this.state.standings)
+            // console.log(this.state.standings)
         })
     }
     showStandings = () => {
         let standings = { record: [this.state.standings] }
-        console.log(standings)
+        // console.log(standings)
         axios.put(`/api/tournaments/${this.props.match.params.tournamentId}/champions/${this.props.match.params.championId}`, standings).then((res) => {
-            console.log(res)
+            // console.log(res)
         })
         window.location = `/tournaments/${this.props.match.params.tournamentId}/champions/${this.props.match.params.championId}/standings`
     }
@@ -57,7 +57,7 @@ class Champion extends Component {
     deleteChampion = () => {
         axios.delete(`/api/tournaments/${this.props.match.params.tournamentId}/champions/${this.props.match.params.championId}`)
             .then((res) => {
-                console.log(res)
+                // console.log(res)
                 window.location = res.data.redirect
             })
     }

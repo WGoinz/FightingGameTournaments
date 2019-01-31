@@ -52,7 +52,7 @@ class NewTournamentURL extends Component {
             // console.log(newUrl)
             axios.post(`/api/newtournament`, newTournament)
                 .then((res) => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     let date = Date()
                     let dateString = date.toString()
                     this.setState({

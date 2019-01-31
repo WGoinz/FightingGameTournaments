@@ -32,7 +32,7 @@ class Standings extends Component {
         axios.get(`/api/tournaments/${this.props.match.params.tournamentId}/champions/${this.props.match.params.championId}`).then((res) => {
             // console.log(res.data.record[0])
             this.setState({ record: res.data.record[0] })
-            console.log(this.state.record)
+            // console.log(this.state.record)
         })
     }
 
@@ -49,11 +49,11 @@ class Standings extends Component {
         sortRecord.sort(function (a, b) {
             return a[1].placement - b[1].placement;
         });
-        console.log(sortRecord)
+        // console.log(sortRecord)
         let record = sortRecord.map((record, i) => {
-            console.log(record)
+            // console.log(record)
             let entrant = parseInt(record[1].entrantId)
-            console.log(entrant)
+            // console.log(entrant)
             return (
                 <tr key={i}>
                     <td>{record[1].placement}:</td>
@@ -62,7 +62,7 @@ class Standings extends Component {
             )
         })
         let standings = record
-        console.log({ standings })
+        // console.log({ standings })
         return (
             <div>
                 <div>
