@@ -66,12 +66,12 @@ class Champion extends Component {
             <div>
                 <Banner />
                 <Main>
-                    <h2>Game Played: {this.state.champion.gamePlayed}</h2>
+                    <h2>{this.state.champion.gamePlayed}</h2>
                     <h2>Tournament ID: {this.state.champion.gamertag}</h2>
                 </Main>
                 <Main>
                     <button onClick={this.showStandings}>Show Standings</button>
-                    <button onClick={this.deleteChampion}>Delete Champion</button>
+                    <button onClick={this.deleteChampion}>Remove Game</button>
                 </Main>
             </div>
         );

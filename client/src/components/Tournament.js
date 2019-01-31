@@ -79,7 +79,7 @@ class Tournament extends Component {
                     <h3>{this.state.tournament.name}</h3>
                     <h3>{this.state.tournament.location}</h3>
                 </Main>
-                <button onClick={this.deleteTournament}>Delete Tournament</button>
+                <button onClick={this.deleteTournament}>Remove Tournament</button>
                 <button onClick={this.createChampions}>Show Events</button>
                 <Champions champions={this.state.championsArray} params={this.props.match.params.tournamentId} />
             </div >
