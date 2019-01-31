@@ -12,6 +12,7 @@ import Standings from './components/Standings';
 
 
 
+
 class App extends Component {
   state = {
     tournaments: []
@@ -31,14 +32,12 @@ class App extends Component {
 
     return (
       <Router>
-        <div>
           <Switch>
             <Route exact path="/" render={HomePageComponent} />
             <Route exact path="/tournaments/:tournamentId" component={Tournament} />
             <Route exact path='/tournaments/:tournamentId/champions/:championId' component={Champion} />
             <Route exact path='/tournaments/:tournamentId/champions/:championId/standings' component={Standings} />
           </Switch>
-        </div>
       </Router>
     );
   }

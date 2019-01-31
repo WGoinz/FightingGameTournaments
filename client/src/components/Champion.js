@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Banner from './Banner';
 import axios from "axios"
+import Standings from './Standings';
 
 class Champion extends Component {
     state = {
@@ -50,7 +51,6 @@ class Champion extends Component {
                 <h3>Gamertag: {this.state.champion.gamertag}</h3>
                 <button onClick={this.showStandings}>Show Standings</button>
                 <button onClick={this.deleteChampion}>Delete Champion</button>
-
             </div>
         );
     }

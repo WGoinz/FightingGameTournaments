@@ -29,7 +29,7 @@ class Tournament extends Component {
         let newTournament = { ...this.state }
         newTournament.tournament.events.forEach(event => {
             const eventName = event.name
-            newTournament.championsArray.push(eventName)
+            newTournament.championsArray.push(event)
         })
         this.setState({ championsArray: newTournament.championsArray })
         console.log(newTournament)
@@ -67,6 +67,7 @@ class Tournament extends Component {
             console.log(champion)
 
         }
+        this.getEventNames()
         window.location = `/tournaments/${this.props.match.params.tournamentId}`
     }
     render() {
@@ -80,7 +81,7 @@ class Tournament extends Component {
                 </Main>
                 <button onClick={this.deleteTournament}>Delete Tournament</button>
                 <button onClick={this.createChampions}>Show Events</button>
-                <Champions params={this.props.match.params.tournamentId} />
+                <Champions champions={this.state.championsArray} params={this.props.match.params.tournamentId} />
             </div >
         )
     }

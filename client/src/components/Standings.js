@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from "styled-components"
 import axios from "axios"
 import Banner from './Banner';
+import { Link } from "react-router-dom"
+
 
 
 
@@ -65,6 +67,7 @@ class Standings extends Component {
             <div>
                 <div>
                     <Banner />
+                    <Link to={`/tournaments/${this.props.match.params.tournamentId}`}><h4>Back To Tournament</h4></Link>
                     <Main>
                         <h1>Standings</h1>
                         <Table className="table table-hover table-light">

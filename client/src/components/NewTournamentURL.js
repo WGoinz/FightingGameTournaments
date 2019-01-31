@@ -34,7 +34,7 @@ class NewTournamentURL extends Component {
     handleChange = (event) => {
         let newTournament = { ...this.state.tournament }
         newTournament[event.target.name] = event.target.value
-        console.log("NEW ADDRESS:", newTournament)
+        // console.log("NEW ADDRESS:", newTournament)
         this.setState({ tournament: newTournament })
     }
     handleSubmit = (event) => {

@@ -5,11 +5,12 @@ import { Link } from "react-router-dom"
 
 
 
+
 const Div = styled.div`
 font-family: 'Sanchez', serif;
 `
 
-const Banner = styled.h1`
+const Header = styled.h1`
 background-color:#5EC9DB ;
 display: inline-block;
 margin-bottom: 15px;
@@ -32,7 +33,7 @@ class Tournaments extends Component {
         return (
             <Div>
                 <NewTournamentURL getTournaments={this.props.getTournaments} />
-                <Banner>Tournaments</Banner>
+                <Header>Tournaments</Header>
                 <div>
                     {tournaments}
                 </div>
