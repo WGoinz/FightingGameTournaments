@@ -58,7 +58,7 @@ class Tournament extends Component {
     }
     toggleEdit = () => {
         let edit = this.state.toggleEdit
-        console.log(edit)
+        // console.log(edit)
         this.setState({ toggleEdit: !edit })
     }
     getSingleTournament = () => {

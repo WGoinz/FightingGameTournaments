@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Banner from './Banner';
 import axios from "axios"
 import styled from "styled-components"
-import Standings from './Standings';
 
 const Main = styled.div`
 font-family: 'Sanchez', serif;
@@ -38,7 +37,7 @@ class Champion extends Component {
     }
     getStandings = () => {
         let champion = { gamertag: this.state.champion.gamertag }
-        console.log(champion)
+        // console.log(champion)
         axios.post(`/api/tournaments/${this.props.match.params.tournamentId}/champions/${this.props.match.params.championId}`, champion).then((res) => {
             this.setState({ standings: res.data.entities.seeds })
             // console.log(this.state.standings)
