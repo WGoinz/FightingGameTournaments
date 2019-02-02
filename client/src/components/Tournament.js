@@ -3,6 +3,7 @@ import Banner from './Banner';
 import axios from "axios"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import EditTournament from './EditTournament';
 
 const Events = styled.div`
 background-color:#5EC9DB ;
@@ -44,7 +45,8 @@ class Tournament extends Component {
     state = {
         tournament: {},
         championsArray: [],
-        champions: []
+        champions: [],
+        toggleEdit: false
     }
 
     deleteTournament = () => {
@@ -54,18 +56,23 @@ class Tournament extends Component {
                 window.location = res.data.redirect
             })
     }
+    toggleEdit = () => {
+        let edit = this.state.toggleEdit
+        console.log(edit)
+        this.setState({ toggleEdit: !edit })
+    }
     getSingleTournament = () => {
         axios.get(`/api/tournaments/${this.props.match.params.tournamentId}`).then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({ tournament: res.data })
             let championLength = this.state.tournament.champions.length
             let eventLength = this.state.tournament.events.length
-            console.log(eventLength)
-            if (championLength !== eventLength){
+            // console.log(eventLength)
+            if (championLength !== eventLength) {
                 this.createChampions()
                 this.getChampions()
             }
-            console.log(championLength)
+            // console.log(championLength)
         })
     }
     componentDidMount = async () => {
@@ -81,10 +88,10 @@ class Tournament extends Component {
                 gamertag: groups[i].id
             }
             axios.post(`/api/tournaments/${this.props.match.params.tournamentId}/champions`, champion).then((res) => {
-                console.log(res.data.champions)
+                // console.log(res.data.champions)
                 this.getChampions()
             })
-            console.log(champion)
+            // console.log(champion)
 
         }
         // window.location = `/tournaments/${this.props.match.params.tournamentId}`
@@ -93,7 +100,7 @@ class Tournament extends Component {
         axios.get(`/api/tournaments/${this.props.match.params.tournamentId}/champions`).then((res) => {
             // console.log(res.data)
             this.setState({ champions: res.data })
-            console.log(this.state.champions)
+            // console.log(this.state.champions)
         })
     }
     render() {
@@ -113,12 +120,21 @@ class Tournament extends Component {
                     <h3>{this.state.tournament.name}</h3>
                     <h3>{this.state.tournament.location}</h3>
                 </Main>
-                <button onClick={this.deleteTournament}>Remove Tournament</button>
-                <button onClick={this.createChampions}>Create Events</button>
-                <Events>
-                    <h1>Events</h1>
-                    {showChampions}
-                </Events>
+                {this.state.toggleEdit
+                    ? <div>
+                        <EditTournament tournament={this.state.tournament} getSingleTournament={this.getSingleTournament} tournamentId={this.props.match.params.tournamentId} toggleEdit={this.toggleEdit} />
+                    </div>
+
+
+                    : <div>
+                        <button onClick={this.toggleEdit}>Edit Tournament</button>
+                        <Events>
+                            <h1>Events</h1>
+                            {showChampions}
+                        </Events>
+                        <button onClick={this.deleteTournament}>Remove Tournament</button>
+                    </div>
+                }
             </div >
         )
     }

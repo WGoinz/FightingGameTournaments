@@ -6,7 +6,6 @@ import Tournament from './components/Tournament';
 import HomePage from './components/HomePage';
 import Champion from './components/Champion';
 import Standings from './components/Standings';
-import TestTournament from './components/TestTournament';
 
 
 
