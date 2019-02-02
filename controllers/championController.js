@@ -46,7 +46,7 @@ const championController = {
         // let getTournament = new smashgg.Tournament("gbwk46");
         // res.json(getTournament)
         const phaseGroupId = parseInt(req.body.gamertag)
-        console.log(req.body.gamertag)
+        // console.log(req.body.gamertag)
         request.get(`https://api.smash.gg/phase_group/${phaseGroupId}?expand[]=sets&expand[]=seeds`, (error, response, body) => {
             if (error) {
                 return console.dir(error);

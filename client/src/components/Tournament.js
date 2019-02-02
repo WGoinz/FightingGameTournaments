@@ -2,8 +2,20 @@ import React, { Component } from 'react';
 import Banner from './Banner';
 import axios from "axios"
 import styled from "styled-components"
-import Champions from './Champions';
+import { Link } from "react-router-dom"
 
+const Events = styled.div`
+background-color:#5EC9DB ;
+font-family: 'Sanchez', serif;
+color:#323234 ;
+display: flex;
+flex-direction: column;
+margin-top: 10px;
+h1 {
+    border-top: 25px solid #323234;
+    font-size: 40px;
+}
+`
 const Main = styled.div`
 font-family: 'Sanchez', serif;
 color:#323234 ;
@@ -19,21 +31,20 @@ h3 {
 
 }
 `
+const Column = styled.div`
+background-color:#5EC9DB ;
+font-family: 'Sanchez', serif;
+color:#323234 ;
+display: flex;
+flex-direction: column;
+border-bottom: 2px solid #323234;
+`
 
 class Tournament extends Component {
     state = {
         tournament: {},
-        championsArray: []
-    }
-    getEventNames = () => {
-        let newTournament = { ...this.state }
-        newTournament.tournament.events.forEach(event => {
-            const eventName = event.name
-            newTournament.championsArray.push(event)
-        })
-        this.setState({ championsArray: newTournament.championsArray })
-        // console.log(newTournament)
-        // console.log(this.state)
+        championsArray: [],
+        champions: []
     }
 
     deleteTournament = () => {
@@ -45,12 +56,21 @@ class Tournament extends Component {
     }
     getSingleTournament = () => {
         axios.get(`/api/tournaments/${this.props.match.params.tournamentId}`).then((res) => {
-            // console.log(res.data)
+            console.log(res.data)
             this.setState({ tournament: res.data })
+            let championLength = this.state.tournament.champions.length
+            let eventLength = this.state.tournament.events.length
+            console.log(eventLength)
+            if (championLength !== eventLength){
+                this.createChampions()
+                this.getChampions()
+            }
+            console.log(championLength)
         })
     }
     componentDidMount = async () => {
         this.getSingleTournament()
+        this.getChampions()
     }
     createChampions = () => {
         let events = this.state.tournament.events
@@ -61,16 +81,30 @@ class Tournament extends Component {
                 gamertag: groups[i].id
             }
             axios.post(`/api/tournaments/${this.props.match.params.tournamentId}/champions`, champion).then((res) => {
-                // console.log(res.data)
+                console.log(res.data.champions)
+                this.getChampions()
             })
-            // console.log(events[i].name + '----' + groups[i].id)
-            // console.log(champion)
+            console.log(champion)
 
         }
-        this.getSingleTournament()
         // window.location = `/tournaments/${this.props.match.params.tournamentId}`
     }
+    getChampions = () => {
+        axios.get(`/api/tournaments/${this.props.match.params.tournamentId}/champions`).then((res) => {
+            // console.log(res.data)
+            this.setState({ champions: res.data })
+            console.log(this.state.champions)
+        })
+    }
     render() {
+
+        let showChampions = this.state.champions.map((champion, i) => {
+            return (
+                <Column key={i}>
+                    <Link to={`/tournaments/${this.props.match.params.tournamentId}/champions/${champion._id}`}><h4>{champion.gamePlayed}</h4></Link>
+                </Column>
+            )
+        })
 
         return (
             <div>
@@ -80,8 +114,11 @@ class Tournament extends Component {
                     <h3>{this.state.tournament.location}</h3>
                 </Main>
                 <button onClick={this.deleteTournament}>Remove Tournament</button>
-                <button onClick={this.createChampions}>Show Events</button>
-                <Champions champions={this.state.championsArray} params={this.props.match.params.tournamentId} />
+                <button onClick={this.createChampions}>Create Events</button>
+                <Events>
+                    <h1>Events</h1>
+                    {showChampions}
+                </Events>
             </div >
         )
     }

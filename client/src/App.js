@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import axios from "axios"
 import './App.css';
-// import Tournaments from './components/Tournaments';
 import Tournament from './components/Tournament';
 import HomePage from './components/HomePage';
 import Champion from './components/Champion';
 import Standings from './components/Standings';
+import TestTournament from './components/TestTournament';
 
 
 
@@ -15,13 +15,13 @@ import Standings from './components/Standings';
 
 class App extends Component {
   state = {
-    tournaments: []
+    tournaments: [],
   }
   getTournaments = () => {
     axios.get("/api/tournaments").then((res) => {
       // console.log(res.data)
       this.setState({ tournaments: res.data })
-      console.log(this.state.tournaments)
+      // console.log(this.state.tournaments)
     })
   }
   render() {
@@ -30,14 +30,16 @@ class App extends Component {
     }
 
 
+
+
     return (
       <Router>
-          <Switch>
-            <Route exact path="/" render={HomePageComponent} />
-            <Route exact path="/tournaments/:tournamentId" component={Tournament} />
-            <Route exact path='/tournaments/:tournamentId/champions/:championId' component={Champion} />
-            <Route exact path='/tournaments/:tournamentId/champions/:championId/standings' component={Standings} />
-          </Switch>
+        <Switch>
+          <Route exact path="/" render={HomePageComponent} />
+          <Route exact path="/tournaments/:tournamentId" component={Tournament} />
+          <Route exact path='/tournaments/:tournamentId/champions/:championId' component={Champion} />
+          <Route exact path='/tournaments/:tournamentId/champions/:championId/standings' component={Standings} />
+        </Switch>
       </Router>
     );
   }

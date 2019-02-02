@@ -14,7 +14,7 @@ const tournamentController = {
     },
     create: async (req, res) => {
         try {
-            console.log(req.body)
+            // console.log(req.body)
             const newTournament = req.body
             const savedTournament = await Tournament.create(newTournament)
             res.json(savedTournament)
@@ -33,7 +33,7 @@ const tournamentController = {
         // let getTournament = new smashgg.Tournament("gbwk46");
         // res.json(getTournament)
         const newUrl = req.body.url
-        console.log(req.body.url)
+        // console.log(req.body.url)
         request.get(`https://api.smash.gg/tournament/${newUrl}?expand[]=phase&expand[]=event&expand[]=groups`, (error, response, body) => {
             if (error) {
                 return console.dir(error);
